@@ -5,242 +5,177 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Smakopedia"
         mc:Ignorable="d"
-        Title="Select a Recipe" Height="500" Width="400"
+        Title="Select Recipe" Height="600" Width="1000"
         Background="#5D4037">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
+    <Grid Margin="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
 
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel  Grid.Column="0" 
-                         VerticalAlignment="Center">
-                <Image Source="Images/curry.png" 
-                       Width="100" Height="100" 
-                       Stretch="UniformToFill"/>
-            </StackPanel>
-
-            <StackPanel  Grid.Column="1">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="0,0,0,0">
-                    <TextBlock Text="Chicken Curry"
-                               Foreground="White"
-                               FontSize="20"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"
-                               FontFamily="Fonts/#Dosis"
-                               Margin="0,0,0,10"/>
-
-                </StackPanel>
-
-                <TextBlock Text="A dish with tender chicken cooked in a sauce made with tomatoes, coconut milk, served with rice or bread."
-                           Foreground="White"
-                           FontSize="15"
-                           FontWeight="Medium"
-                           FontFamily="Fonts/#Dosis"
-                           TextWrapping="Wrap"/>
-
-                <StackPanel Orientation="Horizontal" 
-                            Margin="0,15,0,0">
-                    <Button Content="Start"
-                            Foreground="Black"
-                            FontSize="14"
-                            FontWeight="Medium"
-                             Margin="0,0,10,0">
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-                                <Setter Property="Background" Value="#FF9800"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#F57C00"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="100" Height="25"
-                        CornerRadius="12"
-                        Background="{TemplateBinding Background}">
-
-                                    <ContentPresenter VerticalAlignment="Center"
-                                      HorizontalAlignment="Center"/>
-
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-
-            </StackPanel>
-        </Grid>
-        
-        <StackPanel  Grid.Column="0"
-                     Grid.Row="1"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Left">
-            <Image Source="Images/spagetti.png"
-                   Width="100" Height="100" 
-                   Margin="20"
-                   Stretch="UniformToFill"/>
+        <!-- Left column - Recipe list -->
+        <StackPanel Grid.Column="0" Margin="0,0,20,0">
+            <TextBlock Text="Recipes"
+                     Foreground="White"
+                     FontSize="24"
+                     FontWeight="Bold"
+                     FontFamily="Fonts/#Dosis"
+                     Margin="0,0,0,20"/>
+            
+            <ListBox x:Name="RecipesListBox"
+                     SelectionChanged="RecipesListBox_SelectionChanged"
+                     Background="#795548"
+                     BorderThickness="0"
+                     FontFamily="Fonts/#Dosis">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{Binding Title}"
+                                     Foreground="White"
+                                     FontSize="16"
+                                     FontWeight="Bold"/>
+                            <TextBlock Text="{Binding Description}"
+                                     Foreground="White"
+                                     TextWrapping="Wrap"
+                                     Margin="0,5,0,0"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
+        <!-- Right column - Recipe details -->
+        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <TextBlock x:Name="RecipeTitleTextBlock"
+                         Foreground="White"
+                         FontSize="24"
+                         FontWeight="Bold"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,20"/>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
+                <Image x:Name="RecipeImage"
+                       Height="200"
+                       Stretch="UniformToFill"
+                       Margin="0,0,0,20"/>
 
-            <StackPanel  Grid.Column="1">
-                <StackPanel Orientation="Horizontal"
-                    VerticalAlignment="Center"
-                    Margin="0,0,0,0">
-                    <TextBlock Text="Spaghetti Bolognese"
-                               Foreground="White"
-                               FontSize="20"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"
-                               FontFamily="Fonts/#Dosis"
-                               Margin="0,0,0,10"/>
+                <TextBlock Text="Description"
+                         Foreground="White"
+                         FontSize="18"
+                         FontWeight="Bold"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,10"/>
+                <TextBlock x:Name="RecipeDescriptionTextBlock"
+                         Foreground="White"
+                         FontSize="16"
+                         TextWrapping="Wrap"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,20"/>
 
-                </StackPanel>
+                <TextBlock Text="Ingredients"
+                         Foreground="White"
+                         FontSize="18"
+                         FontWeight="Bold"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,10"/>
+                <ListBox x:Name="IngredientsListBox"
+                         Height="150"
+                         Background="#795548"
+                         BorderThickness="0"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,20"/>
 
-                <TextBlock Text="A classic Italian dish featuring spaghetti topped with a sauce made from ground beef, tomatoes, served with Parmesan."
-                   Foreground="White"
-                   FontSize="15"
-                   FontWeight="Medium"
-                   FontFamily="Fonts/#Dosis"
-                   TextWrapping="Wrap"/>
+                <TextBlock Text="Instructions"
+                         Foreground="White"
+                         FontSize="18"
+                         FontWeight="Bold"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,10"/>
+                <ListBox x:Name="InstructionsListBox"
+                         Height="200"
+                         Background="#795548"
+                         BorderThickness="0"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,20"/>
+
+                <TextBlock Text="Additional Information"
+                         Foreground="White"
+                         FontSize="18"
+                         FontWeight="Bold"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,10"/>
+                <TextBlock x:Name="RecipeDetailsTextBlock"
+                         Foreground="White"
+                         FontSize="14"
+                         TextWrapping="Wrap"
+                         FontFamily="Fonts/#Dosis"
+                         Margin="0,0,0,20"/>
 
                 <StackPanel Orientation="Horizontal" 
-                            Margin="0,15,0,0">
-                    <Button Content="Start"
+                          HorizontalAlignment="Center" 
+                          Margin="0,20,0,0">
+                    <Button Content="Start Cooking"
+                            Click="StartCookingButton_Click"
                             Foreground="Black"
-                            FontSize="14"
+                            FontSize="16"
                             FontWeight="Medium"
-                             Margin="0,0,10,0">
-
+                            Width="200"
+                            Height="50"
+                            Margin="0,0,20,0">
                         <Button.Style>
                             <Style TargetType="Button">
                                 <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-                                <Setter Property="Background" Value="#FF9800"/>
+                                <Setter Property="Background" Value="#4CAF50"/>
                                 <Setter Property="Cursor" Value="Hand"/>
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#F57C00"/>
+                                        <Setter Property="Background" Value="#388E3C"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
-
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Width="100" Height="25"
-                                        CornerRadius="12"
+                                <Border CornerRadius="25"
                                         Background="{TemplateBinding Background}">
-
                                     <ContentPresenter VerticalAlignment="Center"
-                              HorizontalAlignment="Center"/>
+                                                    HorizontalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
 
+                    <Button Content="Delete Recipe"
+                            Click="DeleteButton_Click"
+                            Foreground="Black"
+                            FontSize="16"
+                            FontWeight="Medium"
+                            Width="200"
+                            Height="50">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                                <Setter Property="Background" Value="#D32F2F"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#B71C1C"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                        <Button.Template>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="25"
+                                        Background="{TemplateBinding Background}">
+                                    <ContentPresenter VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
                                 </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
                 </StackPanel>
-
             </StackPanel>
-        </Grid>
-
-        <StackPanel  Grid.Column="0"
-                     Grid.Row="2"
-                     VerticalAlignment="Center"
-                     HorizontalAlignment="Left">
-            <Image Source="Images/vege.png"
-                           Width="100" Height="100" 
-                           Margin="20"
-                           Stretch="UniformToFill"/>
-        </StackPanel>
-
-        <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-
-            <StackPanel  Grid.Column="1">
-                <StackPanel Orientation="Horizontal"
-                            VerticalAlignment="Center"
-                            Margin="0,0,0,0">
-                    <TextBlock Text="Vegetable Stir Fry"
-                               Foreground="White"
-                               FontSize="20"
-                               FontWeight="Bold"
-                               VerticalAlignment="Center"
-                               FontFamily="Fonts/#Dosis"
-                               Margin="0,0,0,10"/>          
-
-                </StackPanel>
-
-                <TextBlock Text="A vibrant dish of fresh vegetables quickly fried in a savory sauce with garlic, ginger, and soy sauce, served with rice or noodles."
-                           Foreground="White"
-                           FontSize="15"
-                           FontWeight="Medium"
-                           FontFamily="Fonts/#Dosis"
-                           TextWrapping="Wrap"/>
-
-                <StackPanel Orientation="Horizontal" 
-                            Margin="0,15,0,0">
-                    <Button Content="Start"
-                            Foreground="Black"
-                            FontSize="14"
-                            FontWeight="Medium"
-                             Margin="0,0,10,0">
-
-                        <Button.Style>
-                            <Style TargetType="Button">
-                                <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
-                                <Setter Property="Background" Value="#FF9800"/>
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Style.Triggers>
-                                    <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#F57C00"/>
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </Button.Style>
-
-                        <Button.Template>
-                            <ControlTemplate TargetType="Button">
-                                <Border Width="100" Height="25"
-                                        CornerRadius="12"
-                                        Background="{TemplateBinding Background}">
-
-                                    <ContentPresenter VerticalAlignment="Center"
-                                                      HorizontalAlignment="Center"/>
-
-                                </Border>
-                            </ControlTemplate>
-                        </Button.Template>
-                    </Button>
-                </StackPanel>
-
-            </StackPanel>
-        </Grid>
-
+        </ScrollViewer>
     </Grid>
 </Window>

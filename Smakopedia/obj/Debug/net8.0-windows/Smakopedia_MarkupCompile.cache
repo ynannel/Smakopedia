@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\yanap\source\repos\Smakopedia\Smakopedia\App.xaml
-3-1762095928
+4-1691245082
 4-1734644125
-6-763095145
+10-1019310581
 1981839832580
-CreateRecipeWindow.xaml;MainWindow.xaml;RecipeSelectionWindow.xaml;
+CookingWindow.xaml;CreateRecipeWindow.xaml;MainWindow.xaml;RecipeSelectionWindow.xaml;
 
 False
 

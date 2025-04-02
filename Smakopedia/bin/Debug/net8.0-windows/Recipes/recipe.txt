@@ -1,0 +1,8 @@
+Recipe: Curry
+Description: Quick curry recipe for students
+Image Path: C:\Users\yanap\Pictures\curry.png
+------------------------
+Recipe: рмпп
+Description: рмрмпрм
+Image Path: C:\Users\yanap\Pictures\curry.png
+------------------------

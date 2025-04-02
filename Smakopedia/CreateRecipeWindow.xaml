@@ -5,75 +5,264 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Smakopedia"
         mc:Ignorable="d"
-       Title="Create Recipe"
-        Height="400" Width="400" Background="#5D4037">
-    <Grid Margin="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        Title="Create New Recipe" Height="800" Width="600"
+        Background="#5D4037">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <TextBlock Text="Create New Recipe"
+                     Foreground="White"
+                     FontSize="24"
+                     FontWeight="Bold"
+                     FontFamily="Fonts/#Dosis"
+                     Margin="0,0,0,20"/>
 
-        <TextBlock Text="Recipe Name:"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Fonts/#Dosis"/>
+            <!-- Recipe Image -->
+            <Image x:Name="RecipeImage"
+                   Height="200"
+                   Stretch="UniformToFill"
+                   Margin="0,0,0,20"/>
 
-        <TextBox Grid.Row="1"
-                 Name="RecipeNameTextBox"
-                 Height="30"
-                 FontSize="14"
-                 FontFamily="Fonts/#Dosis"
-                 Margin="0,5,0,10"/>
+            <Button Content="Upload Image"
+                    Click="UploadImage_Click"
+                    Foreground="Black"
+                    FontSize="14"
+                    FontWeight="Medium"
+                    Width="150"
+                    Height="40"
+                    Margin="0,0,0,20">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                        <Setter Property="Background" Value="#FF9800"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F57C00"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="20"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
 
-        <TextBlock Grid.Row="2"
-                   Text="Description:"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Fonts/#Dosis"
-                   Margin="0,10,0,0"/>
+            <!-- Basic Information -->
+            <TextBlock Text="Basic Information"
+                     Foreground="White"
+                     FontSize="18"
+                     FontWeight="Bold"
+                     FontFamily="Fonts/#Dosis"
+                     Margin="0,0,0,10"/>
 
-        <TextBox Grid.Row="3"
-                 Name="RecipeDescriptionTextBox"
-                 Height="60"
-                 TextWrapping="Wrap"
-                 AcceptsReturn="True"
-                 FontSize="14"
-                 FontFamily="Fonts/#Dosis"
-                 Margin="0,5,0,10"/>
+            <TextBlock Text="Title:"
+                     Foreground="White"
+                     FontSize="14"
+                     FontFamily="Fonts/#Dosis"/>
+            <TextBox x:Name="RecipeNameTextBox"
+                     Margin="0,0,0,10"
+                     FontFamily="Fonts/#Dosis"/>
 
-        <Button Grid.Row="4"
-                Content="Upload Image"
-                Background="#FF9800"
-                Foreground="Black"
-                FontSize="14"
-                FontFamily="Fonts/#Dosis"
-                Cursor="Hand"
-                Height="30"
-                Margin="0,10,0,10"/>
+            <TextBlock Text="Description:"
+                     Foreground="White"
+                     FontSize="14"
+                     FontFamily="Fonts/#Dosis"/>
+            <TextBox x:Name="RecipeDescriptionTextBox"
+                     Height="100"
+                     TextWrapping="Wrap"
+                     AcceptsReturn="True"
+                     VerticalScrollBarVisibility="Auto"
+                     Margin="0,0,0,20"
+                     FontFamily="Fonts/#Dosis"/>
 
-        <Image Grid.Row="5"
-               Name="RecipeImage"
-               Width="100"
-               Height="100"
-               Stretch="Uniform"
-               HorizontalAlignment="Center"
-               Margin="0,10,0,10"/>
+            <!-- Ingredients -->
+            <TextBlock Text="Ingredients"
+                     Foreground="White"
+                     FontSize="18"
+                     FontWeight="Bold"
+                     FontFamily="Fonts/#Dosis"
+                     Margin="0,0,0,10"/>
 
-        <Button Grid.Row="6"
-                Content="Create"
-                Background="#FF9800"
-                Foreground="Black"
-                FontSize="16"
-                FontWeight="Bold"
-                FontFamily="Fonts/#Dosis"
-                Cursor="Hand"
-                Width="120"
-                Height="40"
-                HorizontalAlignment="Center"
-                Margin="0,10,0,0"/>
-    </Grid>
+            <ListBox x:Name="IngredientsListBox"
+                     Height="100"
+                     Margin="0,0,0,10"
+                     Background="#795548"
+                     BorderThickness="0"
+                     FontFamily="Fonts/#Dosis"/>
+
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="NewIngredientTextBox"
+                         Grid.Column="0"
+                         Margin="0,0,10,0"
+                         FontFamily="Fonts/#Dosis"/>
+                <Button Content="Add"
+                        Grid.Column="1"
+                        Click="AddIngredient_Click"
+                        Width="60"
+                        Height="30"
+                        Foreground="Black"
+                        Background="#FF9800"
+                        FontFamily="Fonts/#Dosis"/>
+            </Grid>
+
+            <!-- Instructions -->
+            <TextBlock Text="Instructions"
+                     Foreground="White"
+                     FontSize="18"
+                     FontWeight="Bold"
+                     FontFamily="Fonts/#Dosis"
+                     Margin="0,0,0,10"/>
+
+            <ListBox x:Name="InstructionsListBox"
+                     Height="100"
+                     Margin="0,0,0,10"
+                     Background="#795548"
+                     BorderThickness="0"
+                     FontFamily="Fonts/#Dosis"/>
+
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="NewInstructionTextBox"
+                         Grid.Column="0"
+                         Margin="0,0,10,0"
+                         FontFamily="Fonts/#Dosis"/>
+                <Button Content="Add"
+                        Grid.Column="1"
+                        Click="AddInstruction_Click"
+                        Width="60"
+                        Height="30"
+                        Foreground="Black"
+                        Background="#FF9800"
+                        FontFamily="Fonts/#Dosis"/>
+            </Grid>
+
+            <!-- Additional Information -->
+            <TextBlock Text="Additional Information"
+                     Foreground="White"
+                     FontSize="18"
+                     FontWeight="Bold"
+                     FontFamily="Fonts/#Dosis"
+                     Margin="0,0,0,10"/>
+
+            <Grid Margin="0,0,0,20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Preparation Time (min):"
+                         Grid.Row="0" Grid.Column="0"
+                         Foreground="White"
+                         FontSize="14"
+                         FontFamily="Fonts/#Dosis"/>
+                <TextBox x:Name="PreparationTimeTextBox"
+                         Grid.Row="0" Grid.Column="1"
+                         Margin="10,0,0,10"
+                         FontFamily="Fonts/#Dosis"/>
+
+                <TextBlock Text="Cooking Time (min):"
+                         Grid.Row="1" Grid.Column="0"
+                         Foreground="White"
+                         FontSize="14"
+                         FontFamily="Fonts/#Dosis"/>
+                <TextBox x:Name="CookingTimeTextBox"
+                         Grid.Row="1" Grid.Column="1"
+                         Margin="10,0,0,10"
+                         FontFamily="Fonts/#Dosis"/>
+
+                <TextBlock Text="Servings:"
+                         Grid.Row="2" Grid.Column="0"
+                         Foreground="White"
+                         FontSize="14"
+                         FontFamily="Fonts/#Dosis"/>
+                <TextBox x:Name="ServingsTextBox"
+                         Grid.Row="2" Grid.Column="1"
+                         Margin="10,0,0,10"
+                         FontFamily="Fonts/#Dosis"/>
+
+                <TextBlock Text="Difficulty:"
+                         Grid.Row="3" Grid.Column="0"
+                         Foreground="White"
+                         FontSize="14"
+                         FontFamily="Fonts/#Dosis"/>
+                <ComboBox x:Name="DifficultyComboBox"
+                          Grid.Row="3" Grid.Column="1"
+                          Margin="10,0,0,10"
+                          FontFamily="Fonts/#Dosis">
+                    <ComboBoxItem Content="Easy"/>
+                    <ComboBoxItem Content="Medium"/>
+                    <ComboBoxItem Content="Hard"/>
+                </ComboBox>
+
+                <TextBlock Text="Category:"
+                         Grid.Row="4" Grid.Column="0"
+                         Foreground="White"
+                         FontSize="14"
+                         FontFamily="Fonts/#Dosis"/>
+                <ComboBox x:Name="CategoryComboBox"
+                          Grid.Row="4" Grid.Column="1"
+                          Margin="10,0,0,10"
+                          FontFamily="Fonts/#Dosis">
+                    <ComboBoxItem Content="Appetizer"/>
+                    <ComboBoxItem Content="Main Course"/>
+                    <ComboBoxItem Content="Dessert"/>
+                    <ComboBoxItem Content="Soup"/>
+                    <ComboBoxItem Content="Salad"/>
+                    <ComboBoxItem Content="Snack"/>
+                </ComboBox>
+            </Grid>
+
+            <!-- Create Button -->
+            <Button Content="Create Recipe"
+                    Click="CreateButton_Click"
+                    Foreground="Black"
+                    FontSize="16"
+                    FontWeight="Medium"
+                    Width="200"
+                    Height="50"
+                    Margin="0,20,0,0">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="Fonts/#Dosis"/>
+                        <Setter Property="Background" Value="#FF9800"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#F57C00"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="25"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+        </StackPanel>
+    </ScrollViewer>
 </Window>

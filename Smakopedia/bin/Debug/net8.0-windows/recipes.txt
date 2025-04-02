@@ -1,0 +1,12 @@
+Recipe: First
+Description: First recipe
+ImagePath: C:\Users\yanap\Pictures\curry.png
+-----
+Recipe: Second
+Description: Second recipe
+ImagePath: C:\Users\yanap\Pictures\vege.png
+-----
+Recipe: Curry
+Description: Quick curry recipe for students
+ImagePath: C:\Users\yanap\Pictures\curry.png
+-----

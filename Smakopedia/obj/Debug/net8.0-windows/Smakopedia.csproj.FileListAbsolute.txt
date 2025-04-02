@@ -27,3 +27,6 @@ C:\Users\yanap\source\repos\Smakopedia\Smakopedia\bin\Debug\net8.0-windows\Image
 C:\Users\yanap\source\repos\Smakopedia\Smakopedia\bin\Debug\net8.0-windows\Images\vege.png
 C:\Users\yanap\source\repos\Smakopedia\Smakopedia\obj\Debug\net8.0-windows\CreateRecipeWindow.g.cs
 C:\Users\yanap\source\repos\Smakopedia\Smakopedia\obj\Debug\net8.0-windows\CreateRecipeWindow.baml
+C:\Users\yanap\source\repos\Smakopedia\Smakopedia\obj\Debug\net8.0-windows\Smakopedia.sourcelink.json
+C:\Users\yanap\source\repos\Smakopedia\Smakopedia\obj\Debug\net8.0-windows\CookingWindow.g.cs
+C:\Users\yanap\source\repos\Smakopedia\Smakopedia\obj\Debug\net8.0-windows\CookingWindow.baml
